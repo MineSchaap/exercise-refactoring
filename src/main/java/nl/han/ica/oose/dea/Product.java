@@ -1,7 +1,6 @@
 package nl.han.ica.oose.dea;
 
 public class Product {
-    public static final int SIZE_NOT_APPLICABLE = -1;
     private String code;
     private int color;
     private int size;
