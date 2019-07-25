@@ -7,12 +7,12 @@ toepassen van _refactoring_.
 # Oefening
 
 In deze oefening zal je een bestaande codebase moeten refactoren. De oefening is gebaseerd
-op [https://github.com/stanlylau/refactoring-kata]() betreft een code base vol _bad smells_.
+op [https://github.com/stanlylau/refactoring-kata]() en betreft een code base vol _bad smells_.
 
 De belangrijkste klasse is de `OrdersWriter`, die gebruikt kan worden om 
 [JSON](https://www.json.org/) te genereren. Dit is een veel gebruikt formaat om data uit te 
 wisselen. Ook binnen de Java-gemeenschap wordt hier veelvuldig gebruik van gemaakt en er bestaan
-dan ook veel Libraries om automatisch JSON te maken van Java-Objecten. Voor deze oefening mogen
+dan ook veel Libraries om automatisch [JSON](https://www.json.org/) te maken van Java-Objecten. Voor deze oefening mogen
 deze Libraries **niet** worden gebruikt.
 
 Het is de bedoeling deze oefening in tweetallen, in de vorm van _pair-programming_ uit te voeren.
