@@ -7,7 +7,7 @@ toepassen van _refactoring_.
 # Oefening
 
 In deze oefening zal je een bestaande codebase moeten refactoren. De oefening is gebaseerd
-op [https://github.com/stanlylau/refactoring-kata]() en betreft een code base vol _bad smells_.
+op [https://github.com/stanlylau/refactoring-kata](https://github.com/stanlylau/refactoring-kata) en betreft een code base vol _bad smells_.
 
 De belangrijkste klasse is de `OrdersWriter`, die gebruikt kan worden om 
 [JSON](https://www.json.org/) te genereren. Dit is een veel gebruikt formaat om data uit te 
