@@ -92,6 +92,82 @@ class OrdersWriterTest {
         assertEquals("{\"orders\": [" + order111Json + "]}", ordersContent);
     }
 
+    @Test
+    void oneOrderWithColorOneAndSizeOneTurnsUpBlueinXSInJsonString()
+    {
+        // Arrange
+        order111.AddProduct(new Product("Shirt", 1, 1, 2.99, "TWD"));
+
+        var ordersWriter = new OrdersWriter(orders);
+
+        var order111Json = JsonOrder111WithProduct("{\"code\": \"Shirt\", \"color\": \"blue\", \"size\": \"XS\", \"price\": 2.99, \"currency\": \"TWD\"}");
+
+        // Act
+        var ordersContent = ordersWriter.getContents();
+
+        // Assert
+        assertEquals("{\"orders\": [" + order111Json + "]}", ordersContent);
+    }
+
+    @Test
+    void oneOrderWithColorTwoAndSizeTwoTurnsUpRedinSInJsonString()
+    {
+        // Arrange
+        order111.AddProduct(new Product("Shirt", 2, 2, 2.99, "TWD"));
+
+        var ordersWriter = new OrdersWriter(orders);
+
+        var order111Json = JsonOrder111WithProduct("{\"code\": \"Shirt\", \"color\": \"red\", \"size\": \"S\", \"price\": 2.99, \"currency\": \"TWD\"}");
+
+        // Act
+        var ordersContent = ordersWriter.getContents();
+
+        // Assert
+        assertEquals("{\"orders\": [" + order111Json + "]}", ordersContent);
+    }
+
+    @Test
+    void oneOrderWithColorThreeAndSizeThreeTurnsUpYellowinMInJsonString()
+    {
+        // Arrange
+        order111.AddProduct(new Product("Shirt", 3, 3, 2.99, "TWD"));
+
+        var ordersWriter = new OrdersWriter(orders);
+
+        var order111Json = JsonOrder111WithProduct("{\"code\": \"Shirt\", \"color\": \"yellow\", \"size\": \"M\", \"price\": 2.99, \"currency\": \"TWD\"}");
+
+        // Act
+        var ordersContent = ordersWriter.getContents();
+
+        // Assert
+        assertEquals("{\"orders\": [" + order111Json + "]}", ordersContent);
+    }
+
+    @Test
+    void multipleOrdersWithDifferentSizesAndDifferentColorsReturnsCorrectJsonString()
+    {
+        // Arrange
+        order111.AddProduct(new Product("Shirt", 4, 4, 2.99, "TWD"));
+        order111.AddProduct(new Product("Shirt", 5, 5, 2.99, "TWD"));
+        order111.AddProduct(new Product("Shirt", 6, 6, 2.99, "TWD"));
+        order111.AddProduct(new Product("Shirt", 7, 7, 2.99, "TWD"));
+
+        var ordersWriter = new OrdersWriter(orders);
+
+        var order111JsonPart1 = "{\"code\": \"Shirt\", \"color\": \"no color\", \"size\": \"L\", \"price\": 2.99, \"currency\": \"TWD\"}";
+        var order111JsonPart2 = "{\"code\": \"Shirt\", \"color\": \"no color\", \"size\": \"XL\", \"price\": 2.99, \"currency\": \"TWD\"}";
+        var order111JsonPart3 = "{\"code\": \"Shirt\", \"color\": \"no color\", \"size\": \"XXL\", \"price\": 2.99, \"currency\": \"TWD\"}";
+        var order111JsonPart4 = "{\"code\": \"Shirt\", \"color\": \"no color\", \"size\": \"Invalid Size\", \"price\": 2.99, \"currency\": \"TWD\"}";
+
+        // Act
+        var ordersContent = ordersWriter.getContents();
+
+        // Assert
+        assertEquals("{\"orders\": [" + JsonOrder111WithProduct(order111JsonPart1 + ", " + order111JsonPart2 + ", " + order111JsonPart3 + ", " + order111JsonPart4) + "]}", ordersContent);
+    }
+
+
+
     private String JsonOrder111WithProduct(String productJson) {
         return "{\"id\": 111, \"products\": [" + productJson + "]}";
     }
