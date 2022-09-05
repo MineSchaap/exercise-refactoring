@@ -3,6 +3,7 @@ package nl.han.ica.oose.dea;
 import java.util.ArrayList;
 import java.util.List;
 
+// TODO: Fix 'data class' or 'lazy class' smell. No or very little behaviour?
 public class Order {
     private List<Product> products = new ArrayList<Product>();
     private int id;
