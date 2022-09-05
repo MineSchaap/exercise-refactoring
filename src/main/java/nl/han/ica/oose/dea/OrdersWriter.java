@@ -7,6 +7,7 @@ public class OrdersWriter {
         this.orders = orders;
     }
 
+    // TODO: Fix 'long method' smell. Review other smells. Move code to other classes?
     public String getContents() {
         StringBuffer sb = new StringBuffer("{\"orders\": [");
 
@@ -57,6 +58,8 @@ public class OrdersWriter {
         return sb.append("]}").toString();
     }
 
+    // TODO: Fix 'Feature Envy' smell. Move to Product?
+    // TODO: Fix 'switch statement' smell. Use Size class or Enum?
     private String getSizeFor(Product product) {
         switch (product.getSize()) {
             case 1:
@@ -75,7 +78,8 @@ public class OrdersWriter {
                 return "Invalid Size";
         }
     }
-
+    // TODO: Fix 'Feature Envy' smell. Move to Product?
+    // TODO: Fix 'switch statement' smell. Use Color class or Enum?
     private String getColorFor(Product product) {
         switch (product.getColor()) {
             case 1:
