@@ -1,7 +1,7 @@
 package nl.han.ica.oose.dea;
 
 public class OrdersWriter {
-    private Orders orders;
+    private final Orders orders;
 
     public OrdersWriter(Orders orders) {
         this.orders = orders;

@@ -6,8 +6,8 @@ import java.util.List;
 import static nl.han.ica.oose.dea.JsonBuilder.*;
 
 public class Order {
-    private List<Product> products = new ArrayList<Product>();
-    private int id;
+    private final List<Product> products = new ArrayList<>();
+    private final int id;
 
     public Order(int id) {
         this.id = id;

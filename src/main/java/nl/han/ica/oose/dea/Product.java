@@ -3,11 +3,11 @@ package nl.han.ica.oose.dea;
 import static nl.han.ica.oose.dea.JsonBuilder.*;
 
 public class Product {
-    private String code;
-    private ProductColor color;
-    private ProductSize size;
-    private double price;
-    private String currency;
+    private final String code;
+    private final ProductColor color;
+    private final ProductSize size;
+    private final double price;
+    private final String currency;
 
     public Product(String code, ProductColor color, ProductSize size, double price, String currency) {
         this.code = code;

@@ -4,10 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static nl.han.ica.oose.dea.JsonBuilder.*;
-import static nl.han.ica.oose.dea.JsonBuilder.removeLastCommaAndSpaceIfCollectionIsNotEmpty;
 
 public class Orders {
-    private List<Order> orders = new ArrayList<Order>();
+    private final List<Order> orders = new ArrayList<>();
 
     public void addOrder(Order order) {
         orders.add(order);
