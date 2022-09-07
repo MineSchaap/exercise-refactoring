@@ -4,6 +4,8 @@ package nl.han.ica.oose.dea;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static nl.han.ica.oose.dea.ProductColor.*;
+import static nl.han.ica.oose.dea.ProductSize.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class OrdersWriterTest {
@@ -16,7 +18,7 @@ class OrdersWriterTest {
         orders = new Orders();
         order111 = new Order(111);
 
-        orders.AddOrder(order111);
+        orders.addOrder(order111);
     }
 
     @Test
@@ -47,7 +49,7 @@ class OrdersWriterTest {
     @Test
     void twoOrdersReturnsCorrectJsonString() {
         // Arrange
-        orders.AddOrder(new Order(222));
+        orders.addOrder(new Order(222));
         var ordersWriter = new OrdersWriter(orders);
 
         var order111Json = JsonOrder111WithProduct("");
@@ -63,7 +65,7 @@ class OrdersWriterTest {
     @Test
     void oneOrderWithOneProductReturnsCorrectJsonString() {
         // Arrange
-        order111.AddProduct(new Product("Shirt", 1, 3, 2.99, "TWD"));
+        order111.addProduct(new Product("Shirt", BLUE, M, 2.99, "TWD"));
 
         var ordersWriter = new OrdersWriter(orders);
 
@@ -79,7 +81,7 @@ class OrdersWriterTest {
     @Test
     void oneOrderWithOneProductNoSizeReturnsCorrectJsonString() {
         // Arrange
-        order111.AddProduct(new Product("Pot", 2, -1, 16.50, "SGD"));
+        order111.addProduct(new Product("Pot", RED, UNKNOWN, 16.50, "SGD"));
 
         var ordersWriter = new OrdersWriter(orders);
 
@@ -96,7 +98,7 @@ class OrdersWriterTest {
     void oneOrderWithColorOneAndSizeOneTurnsUpBlueinXSInJsonString()
     {
         // Arrange
-        order111.AddProduct(new Product("Shirt", 1, 1, 2.99, "TWD"));
+        order111.addProduct(new Product("Shirt", BLUE, XS, 2.99, "TWD"));
 
         var ordersWriter = new OrdersWriter(orders);
 
@@ -113,7 +115,7 @@ class OrdersWriterTest {
     void oneOrderWithColorTwoAndSizeTwoTurnsUpRedinSInJsonString()
     {
         // Arrange
-        order111.AddProduct(new Product("Shirt", 2, 2, 2.99, "TWD"));
+        order111.addProduct(new Product("Shirt", RED, S, 2.99, "TWD"));
 
         var ordersWriter = new OrdersWriter(orders);
 
@@ -130,7 +132,7 @@ class OrdersWriterTest {
     void oneOrderWithColorThreeAndSizeThreeTurnsUpYellowinMInJsonString()
     {
         // Arrange
-        order111.AddProduct(new Product("Shirt", 3, 3, 2.99, "TWD"));
+        order111.addProduct(new Product("Shirt", YELLOW, M, 2.99, "TWD"));
 
         var ordersWriter = new OrdersWriter(orders);
 
@@ -147,10 +149,10 @@ class OrdersWriterTest {
     void multipleOrdersWithDifferentSizesAndDifferentColorsReturnsCorrectJsonString()
     {
         // Arrange
-        order111.AddProduct(new Product("Shirt", 4, 4, 2.99, "TWD"));
-        order111.AddProduct(new Product("Shirt", 5, 5, 2.99, "TWD"));
-        order111.AddProduct(new Product("Shirt", 6, 6, 2.99, "TWD"));
-        order111.AddProduct(new Product("Shirt", 7, 7, 2.99, "TWD"));
+        order111.addProduct(new Product("Shirt", NO_COLOR, L, 2.99, "TWD"));
+        order111.addProduct(new Product("Shirt", NO_COLOR, XL, 2.99, "TWD"));
+        order111.addProduct(new Product("Shirt", NO_COLOR, XXL, 2.99, "TWD"));
+        order111.addProduct(new Product("Shirt", NO_COLOR, INVALID_SIZE, 2.99, "TWD"));
 
         var ordersWriter = new OrdersWriter(orders);
 

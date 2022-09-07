@@ -1,13 +1,15 @@
 package nl.han.ica.oose.dea;
 
+import static nl.han.ica.oose.dea.JsonBuilder.*;
+
 public class Product {
     private String code;
-    private int color;
-    private int size;
+    private ProductColor color;
+    private ProductSize size;
     private double price;
     private String currency;
 
-    public Product(String code, int color, int size, double price, String currency) {
+    public Product(String code, ProductColor color, ProductSize size, double price, String currency) {
         this.code = code;
         this.color = color;
         this.size = size;
@@ -15,23 +17,25 @@ public class Product {
         this.currency = currency;
     }
 
-    public String getCode() {
-        return code;
+    @Override
+    public String toString() {
+        StringBuilder productAsString = new StringBuilder();
+        productAsString.append(START_OBJECT);
+        appendPropertyAsJsonData(productAsString, "\"code\": \"", this.code, "\", ");
+        appendPropertyAsJsonData(productAsString, "\"color\": \"", this.color.toString(), "\", ");
+        appendSizeOnlyIfValueIsNotUnknown(productAsString);
+        appendPropertyAsJsonData(productAsString,"","\"price\": ", this.price);
+        appendPropertyAsJsonData(productAsString, ", ", "\"currency\": \"", this.currency);
+        productAsString.append("\"" + END_OBJECT + ", ");
+        return productAsString.toString();
     }
 
-    public int getColor() {
-        return color;
-    }
 
-    public int getSize() {
-        return size;
-    }
 
-    public double getPrice() {
-        return price;
-    }
 
-    public String getCurrency() {
-        return currency;
+    private void appendSizeOnlyIfValueIsNotUnknown(StringBuilder productAsString) {
+        if (size != ProductSize.UNKNOWN) {
+            appendPropertyAsJsonData(productAsString, "\"size\": \"", this.size.toString(), "\", ");
+        }
     }
 }
