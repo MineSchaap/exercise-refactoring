@@ -1,9 +1,14 @@
 package nl.han.ica.oose.dea;
 
+// TODO: Fix 'Data Class' smell. Does Product not have any behaviour?
 public class Product {
     private String code;
+
+    // TODO: Fix 'Primitive Obsession'. OR Fix 'Feature Envy' in OrdersWriter
     private int color;
+    // TODO: Fix 'Primitive Obsession'. OR Fix 'Feature Envy' in OrdersWriter
     private int size;
+    // TODO: Fix 'Primitive Obsession'. Combine price and currency. Add Price class. Could be inline.
     private double price;
     private String currency;
 
