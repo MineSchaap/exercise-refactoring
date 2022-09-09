@@ -3,27 +3,37 @@ package nl.han.ica.oose.dea;
 import java.util.ArrayList;
 import java.util.List;
 
+import static nl.han.ica.oose.dea.JsonBuilder.*;
+
 public class Order {
-    private List<Product> products = new ArrayList<Product>();
-    private int id;
+    private final List<Product> products = new ArrayList<>();
+    private final int id;
 
     public Order(int id) {
         this.id = id;
     }
 
-    public int getOrderId() {
-        return id;
-    }
-
-    public int getProductsCount() {
-        return products.size();
-    }
-
-    public Product getProduct(int j) {
-        return products.get(j);
-    }
-
-    public void AddProduct(Product product) {
+    public void addProduct(Product product) {
         products.add(product);
     }
+
+    @Override
+    public String toString() {
+        var orderAsString = new StringBuilder();
+        orderAsString.append(START_OBJECT);
+        appendPropertyAsJsonData(orderAsString, "\"id\": ", this.id,", ");
+        orderAsString.append("\"products\": " + START_COLLECTION);
+
+        for (Product product : products) {
+            orderAsString.append(product);
+        }
+
+        removeLastCommaAndSpaceIfCollectionIsNotEmpty(orderAsString, products);
+
+        orderAsString.append(END_COLLECTION);
+        orderAsString.append(END_OBJECT + ", ");
+        return orderAsString.toString();
+    }
+
+
 }
