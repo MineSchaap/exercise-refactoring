@@ -12,21 +12,11 @@ public class OrdersWriter {
 
         for (int i = 0; i < orders.getOrdersCount(); i++) {
             Order order = orders.getOrder(i);
-            sb.append("{");
-            sb.append("\"id\": ");
-            sb.append(order.getOrderId());
-            sb.append(", ");
-            sb.append("\"products\": [");
+            sb.append("{\"id\": " + order.getOrderId() + ", \"products\": [");
             for (int j = 0; j < order.getProductsCount(); j++) {
                 Product product = order.getProduct(j);
 
-                sb.append("{");
-                sb.append("\"code\": \"");
-                sb.append(product.getCode());
-                sb.append("\", ");
-                sb.append("\"color\": \"");
-                sb.append(getColorFor(product));
-                sb.append("\", ");
+                sb.append("{\"code\": \"" + product.getCode() + "\", \"color\": \"" + getColorFor(product) + "\", ");
 
                 if (product.getSize() != -1) {
                     sb.append("\"size\": \"");
